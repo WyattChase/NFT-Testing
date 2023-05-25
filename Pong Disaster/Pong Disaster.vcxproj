@@ -136,6 +136,10 @@
     <ClInclude Include="..\..\..\..\..\Gaming Libraries\raylib-4.5.0_win64_mingw-w64\raylib-4.5.0_win64_msvc16\include\raylib.h" />
     <ClInclude Include="..\..\..\..\..\Gaming Libraries\raylib-4.5.0_win64_mingw-w64\raylib-4.5.0_win64_msvc16\include\raymath.h" />
   </ItemGroup>
+  <ItemGroup>
+    <Media Include="..\..\..\OneDrive\Music\Sound effects\packman dying.wav" />
+    <Media Include="..\..\..\OneDrive\Music\Sound effects\pong ball.wav" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

@@ -11,6 +11,8 @@ const int paddleSpeed = 5;
 int scorePlayer1 = 0;
 int scorePlayer2 = 0;
 
+Sound hitSound;
+Sound scoreSound;
 
 
 
@@ -25,7 +27,8 @@ int main()
 	Vector2 ballSpeed = { 3, 3 };
 
 	SetTargetFPS(60);
-	
+	hitSound = LoadSound("./pong_ball.wav");
+	scoreSound = LoadSound("./packman_dying.wav");
 
 	while (!WindowShouldClose())
 	{
@@ -57,28 +60,44 @@ int main()
 			ballSpeed.y *= -1;
 		
 		if (CheckCollisionCircleRec(ballPosition, 10, player1) || CheckCollisionCircleRec(ballPosition, 10, player2))
+		{
+			PlaySound(hitSound);
 			ballSpeed.x *= -1;
-
-		if (ballPosition.x > screenWidth)
-		{
-			// Player 1 scores a point
-			scorePlayer1++;
-
-			// Resets the ball position and speed for the next round
-			ballPosition = { screenWidth / 2, screenHeight / 2 };
-			ballSpeed = { -3, 3 };
-
 		}
-		else if (ballPosition.x < 0)
+
+		if (ballPosition.x + ballSpeed.x > screenWidth - 10 && ballSpeed.x > 0)
 		{
-			// Player 2 scores a point
-			scorePlayer2++;
-
-			// Resets the ball position and speed for the next round
-			ballPosition = { screenWidth / 2, screenHeight / 2 };
-			ballSpeed = { -3, 3 };
-
+			// Ball collides with player 2's paddle
+			if (CheckCollisionCircleRec(ballPosition, 10, player2))
+			{
+				ballSpeed.x *= -1; // Reverse ball direction on collision
+			}
+			else
+			{
+				// Player 1 scores a point
+				scorePlayer1++;
+				PlaySound(scoreSound);
+				ballPosition = { screenWidth / 2, screenHeight / 2 };
+				ballSpeed = { -3, 3 };
+			}
 		}
+		else if (ballPosition.x + ballSpeed.x < 10 && ballSpeed.x < 0)
+		{
+			// Ball collides with player 1's paddle
+			if (CheckCollisionCircleRec(ballPosition, 10, player1))
+			{
+				ballSpeed.x *= -1; // Reverse ball direction on collision
+			}
+			else
+			{
+				// Player 2 scores a point
+				scorePlayer2++;
+				PlaySound(scoreSound);
+				ballPosition = { screenWidth / 2, screenHeight / 2 };
+				ballSpeed = { 3, 3 };
+			}
+		}
+
 
 		BeginDrawing();
 		{
@@ -92,8 +111,8 @@ int main()
 
 			DrawText("Player 2: Arrow Up = Up and Arrow Down = Down", screenWidth - 500, 10, 20, WHITE);
 
-			DrawText(("Player 1:" + std::to_string(scorePlayer1)).c_str(), 10, 10, 20, WHITE);
-			DrawText(("Player 2:" + std::to_string(scorePlayer2)).c_str(), screenWidth - 500, 10, 20, WHITE);
+			DrawText(("Player 1:" + std::to_string(scorePlayer1)).c_str(), 10, 50, 20, WHITE);
+			DrawText(("Player 2:" + std::to_string(scorePlayer2)).c_str(), screenWidth - 500, 50, 20, WHITE);
 
 
 
@@ -113,5 +132,5 @@ int main()
 	CloseWindow();
 
 	return 0;
-
+		
 }
