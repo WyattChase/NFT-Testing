@@ -110,7 +110,7 @@
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>C:\Gaming Libraries\raylib-4.5.0_win64_mingw-w64\raylib-4.5.0_win64_msvc16\lib</AdditionalLibraryDirectories>
-      <AdditionalDependencies>raylib.lib;winmm.lib;$(CoreLibraryDependencies);%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Winmm.lib;raylib.lib;winmm.lib;$(CoreLibraryDependencies);%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -135,10 +135,21 @@
   <ItemGroup>
     <ClInclude Include="..\..\..\..\..\Gaming Libraries\raylib-4.5.0_win64_mingw-w64\raylib-4.5.0_win64_msvc16\include\raylib.h" />
     <ClInclude Include="..\..\..\..\..\Gaming Libraries\raylib-4.5.0_win64_mingw-w64\raylib-4.5.0_win64_msvc16\include\raymath.h" />
+    <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>
-    <Media Include="..\..\..\OneDrive\Music\Sound effects\packman dying.wav" />
-    <Media Include="..\..\..\OneDrive\Music\Sound effects\pong ball.wav" />
+    <Media Include="..\..\..\OneDrive\Music\Sound effects\packmandying.wav" />
+    <Media Include="..\..\..\OneDrive\Music\Sound effects\pongball.wav" />
+    <Media Include="packman dying.wav">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+      </ExcludedFromBuild>
+      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+      </DeploymentContent>
+    </Media>
+    <Media Include="pong ball.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Pong Disaster.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

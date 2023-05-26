@@ -26,13 +26,27 @@
     <ClInclude Include="..\..\..\..\..\Gaming Libraries\raylib-4.5.0_win64_mingw-w64\raylib-4.5.0_win64_msvc16\include\raymath.h">
       <Filter>Resource Files</Filter>
     </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Media Include="..\..\..\OneDrive\Music\Sound effects\packman dying.wav">
-      <Filter>Source Files</Filter>
+    <Media Include="..\..\..\OneDrive\Music\Sound effects\packmandying.wav">
+      <Filter>Resource Files</Filter>
     </Media>
-    <Media Include="..\..\..\OneDrive\Music\Sound effects\pong ball.wav">
-      <Filter>Source Files</Filter>
+    <Media Include="..\..\..\OneDrive\Music\Sound effects\pongball.wav">
+      <Filter>Resource Files</Filter>
     </Media>
+    <Media Include="packman dying.wav">
+      <Filter>Resource Files</Filter>
+    </Media>
+    <Media Include="pong ball.wav">
+      <Filter>Resource Files</Filter>
+    </Media>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Pong Disaster.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
   </ItemGroup>
 </Project>

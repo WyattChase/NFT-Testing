@@ -11,14 +11,16 @@ const int paddleSpeed = 5;
 int scorePlayer1 = 0;
 int scorePlayer2 = 0;
 
-Sound hitSound;
-Sound scoreSound;
+
 
 
 
 int main()
 {
+
 	InitWindow(screenWidth, screenHeight, "Pong Disaster");
+	InitAudioDevice();
+
 
 	Rectangle player1 = { 30, screenHeight / 2 - paddleHeight / 2, paddleWidth, paddleHeight };
 	Rectangle player2 = { screenWidth - 30 - paddleWidth, screenHeight / 2 - paddleHeight / 2, paddleWidth, paddleHeight };
@@ -26,9 +28,12 @@ int main()
 	Vector2 ballPosition = { screenWidth / 2, screenHeight / 2 };
 	Vector2 ballSpeed = { 3, 3 };
 
+	Sound hitSound = LoadSound("resources/pongball.wav");
+	Sound scoreSound = LoadSound("resources/packmandying.wav");
+
+
 	SetTargetFPS(60);
-	hitSound = LoadSound("./pong_ball.wav");
-	scoreSound = LoadSound("./packman_dying.wav");
+	
 
 	while (!WindowShouldClose())
 	{
@@ -128,6 +133,11 @@ int main()
 
 		EndDrawing();
 	}
+	UnloadSound(hitSound);     // Unload sound data
+	UnloadSound(scoreSound);     // Unload sound data
+
+	CloseAudioDevice(); // Close audio device
+
 
 	CloseWindow();
 
